@@ -25,7 +25,7 @@ class ReceiptStateValue extends ReceiptState{
 }
 class ReceiptStateLoading extends ReceiptState{}
 class ReceiptStateSucess extends ReceiptState{}
-
+//teste
 class ReceiptController extends ValueNotifier<ReceiptState>{
   ReceiptController(super.value);
   late Receipt cachedReceipt;
