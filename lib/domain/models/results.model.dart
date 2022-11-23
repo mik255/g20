@@ -5,14 +5,16 @@ class Results {
   double? ticket;
   double? priceSquare;
   double? g20Price;
-
+  String? user_id;
   Results(
       {this.g20total,
         this.totalOrders,
         this.marginProfit,
         this.ticket,
         this.priceSquare,
-        this.g20Price});
+        this.g20Price,
+        this.user_id,
+      });
 
   Results.fromJson(Map<String, dynamic> json) {
     g20total = json['g20total'];
@@ -21,6 +23,7 @@ class Results {
     ticket = json['ticket'];
     priceSquare = json['priceSquare'];
     g20Price = json['g20Price'];
+    user_id = json['user_id'];
   }
 
   Map<String, dynamic> toJson() {
@@ -31,6 +34,7 @@ class Results {
     data['ticket'] = this.ticket;
     data['priceSquare'] = this.priceSquare;
     data['g20Price'] = this.g20Price;
+    data['user_id'] = this.user_id;
     return data;
   }
 }

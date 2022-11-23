@@ -13,13 +13,13 @@ class LoginController extends ValueNotifier<bool>{
       url: MainStances.httpRoutes.login,
       method: 'POST',
       body: {
-        "cnpj":'701445586',
+        "cnpj":"701445586",
         "password":"123"
       }
     ));
     if(httpApiResponse.statusCode == 200){
       try{
-        //User user = User.fromMap(httpApiResponse.data);
+        MainStances.user = User.fromMap(httpApiResponse.data);
       }catch(e,_){
         print(_);
       }

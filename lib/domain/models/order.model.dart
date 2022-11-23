@@ -9,15 +9,21 @@ part 'order.model.g.dart';
 
 @JsonSerializable()
 class Receipt {
-  String? id;
-  int date;
-  String observation;
-  List<Story> stories;
+  int? id;
+  int user_id;
+  int? category_id;
+  int? date;
+  String? observation;
+  ReceiptAttributes attributes;
+  double? totalPrice;
   Receipt({
     this.id,
     required this.date,
-    required this.stories,
+    required this.attributes,
     required this.observation,
+    required this.user_id,
+    required this.category_id,
+    this.totalPrice = 0,
   });
   factory Receipt.fromJson(Map<String, dynamic> json) => _$ReceiptFromJson(json);
 
@@ -25,10 +31,19 @@ class Receipt {
   Map<String, dynamic> toJson() => _$ReceiptToJson(this);
   double getTotal(){
     double total = 0;
-   for (var element in stories) {
+   for (var element in attributes.stories) {
     total+=element.getTotal();
   }
-   return total;
+   return totalPrice = total;
   }
 }
 
+@JsonSerializable()
+class ReceiptAttributes{
+  ReceiptAttributes({required this.stories});
+  List<Story> stories;
+  factory ReceiptAttributes.fromJson(Map<String, dynamic> json) => _$ReceiptAttributesFromJson(json);
+
+  /// Connect the generated [_$PersonToJson] function to the `toJson` method.
+  Map<String, dynamic> toJson() => _$ReceiptAttributesToJson(this);
+}

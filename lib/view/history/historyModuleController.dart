@@ -29,7 +29,7 @@ class HistoryModuleController extends ValueNotifier<HistoryState> {
     try {
       HttpApiResponse httpApiResponse =
           await MainStances.httpApiClient.request(HttpApiRequest(
-        url: MainStances.httpRoutes.historyReceipts,
+        url: MainStances.httpRoutes.receipt,
         method: 'GET',
       ));
       if (httpApiResponse.statusCode == 200) {

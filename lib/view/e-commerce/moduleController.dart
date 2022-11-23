@@ -11,6 +11,7 @@ import '../../core/http/http.ErrorsHandle.dart';
 import '../../core/http/http.Request.dart';
 import '../../core/http/http.Response.dart';
 import '../../domain/models/category.model.dart';
+import '../../domain/models/user.model.dart';
 import '../../mainStances.dart';
 import '../../shared/widgets/GenericError.dart';
 import 'components/category/categoryState.dart';
@@ -175,11 +176,13 @@ class ModuleController extends ValueNotifier<EcommerceState>{
   }
 
   void buildReceipt(){
+
     receiptController = ReceiptController(ReceiptStateValue(
       receipt: Receipt(
+        user_id: MainStances.user.id,
         date: DateTime.now().millisecondsSinceEpoch,
-        stories: categoryViewController.value.storiesWithProductsSelected.map((e) => e.value.story).toList(),
-        observation: observation,)
+        attributes: ReceiptAttributes(stories:categoryViewController.value.storiesWithProductsSelected.map((e) => e.value.story).toList()),
+        observation: observation, category_id: category!.id,)..getTotal()
     ));
     }
 

@@ -14,7 +14,7 @@ Story _$StoryFromJson(Map<String, dynamic> json) => Story(
           .toList(),
       totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0,
       pix: json['pix'] as String,
-      paymentType: json['paymentType'],
+      paymentType: json['paymentType'] as String?,
     )..productsBag = (json['productsBag'] as List<dynamic>?)
         ?.map((e) => Product.fromJson(e as Map<String, dynamic>))
         .toSet();

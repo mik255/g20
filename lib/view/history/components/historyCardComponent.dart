@@ -62,7 +62,7 @@ class HistoryCardComponent extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        DateTime.fromMillisecondsSinceEpoch(receipt.date)
+                        DateTime.fromMillisecondsSinceEpoch(receipt.date??0)
                             .customToString(),
                         style: const TextStyle(
                           color: Color(0xff292929),
@@ -75,7 +75,7 @@ class HistoryCardComponent extends StatelessWidget {
                         height: 8,
                       ),
                       Text(
-                        "${receipt.stories.length} lojas",
+                        "${receipt.attributes.stories.length} lojas",
                         style: const TextStyle(
                           color: Color(0xff9a9a9a),
                           fontSize: 12,

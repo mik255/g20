@@ -146,7 +146,7 @@ class ReceiptPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 8),
                                   Text(
-                                    "${state.receipt.stories.length}"
+                                    "${state.receipt.attributes.stories.length}"
                                         " Lojas selecionadas",
                                     style: const TextStyle(
                                       color: Color(0xff9a9a9a),
@@ -173,7 +173,7 @@ class ReceiptPage extends StatelessWidget {
                                 const SizedBox(
                                   height: 16,
                                 ),
-                                ...state.receipt.stories
+                                ...state.receipt.attributes.stories
                                     .map((e) => Padding(
                                   padding: const EdgeInsets.symmetric(
                                       vertical: 8.0),
