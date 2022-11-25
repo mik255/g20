@@ -6,13 +6,14 @@ import '../../core/http/http.ErrorsHandle.dart';
 import '../../core/http/http.Request.dart';
 import '../../core/http/http.Response.dart';
 import '../../domain/models/results.model.dart';
+import '../../domain/models/user.model.dart';
 import '../../mainStances.dart';
 import '../../shared/widgets/GenericError.dart';
 
 class ResultsState {
   String currentFilterDateName = 'Hoje';
   bool isLoading = false;
-  Results? results;
+  UserResults? results;
 
   ResultsState({
     required this.isLoading,
@@ -49,15 +50,22 @@ class ResultsModuleController extends ValueNotifier<ResultsState> {
     try {
       HttpApiResponse httpApiResponse =
           await MainStances.httpApiClient.request(HttpApiRequest(
-        url: MainStances.httpRoutes.results,
-        method: 'GET',
+        url: MainStances.httpRoutes.userResults,
+        method: 'POST',
+            body: {
+              'id':MainStances.user.id,
+              'start': DateTime.now().millisecondsSinceEpoch,
+              'end': DateTime.now().millisecondsSinceEpoch
+            }
       ));
       if (httpApiResponse.statusCode == 200) {
         value = ResultsState(
           isLoading: false,
           currentFilterDateName: "Hoje",
-          results: Results.fromJson(httpApiResponse.data),
+          results: UserResults.fromMap(httpApiResponse.data),
         );
+        print(value.results!.toJson());
+        return;
       }
     } on HttpError catch (e, _) {
       Fluttertoast.showToast(
@@ -76,6 +84,7 @@ class ResultsModuleController extends ValueNotifier<ResultsState> {
       ));
       throw ' error';
     } catch (e, _) {
+      print(e);
       print(_);
       Fluttertoast.showToast(
           msg: e.toString(),
@@ -113,21 +122,22 @@ class ResultsModuleController extends ValueNotifier<ResultsState> {
     searchFilter(currentDates);
   }
 
-  void _fetchByDate(DateTime start, DateTime end) async {
+  Future<void> fetchByDate(DateTime start, DateTime end) async {
     try {
       HttpApiResponse httpApiResponse = await MainStances.httpApiClient.request(
           HttpApiRequest(
-              url: MainStances.httpRoutes.results,
-              method: 'GET',
+              url: MainStances.httpRoutes.userResults,
+              method: 'POST',
               body: {
-            'start': start.toIso8601String(),
-            'end': end.toIso8601String()
+             'id':MainStances.user.id,
+             'start': start.millisecondsSinceEpoch,
+             'end': end.millisecondsSinceEpoch
           }));
       if (httpApiResponse.statusCode == 200) {
         value = ResultsState(
           isLoading: false,
           currentFilterDateName: value.currentFilterDateName,
-          results: Results.fromJson(httpApiResponse.data),
+          results: UserResults.fromMap(httpApiResponse.data),
         );
       }
     } on HttpError catch (e, _) {
@@ -165,37 +175,41 @@ class ResultsModuleController extends ValueNotifier<ResultsState> {
     }
   }
 
-  void searchFilter(Dates dates, {DateTime? start, DateTime? end}) {
+  Future<void> searchFilter(Dates dates, {DateTime? start, DateTime? end})async {
     if (dates == Dates.hoje) {
       value = ResultsState(
         isLoading: true,
         currentFilterDateName: "Hoje",
         results: value.results,
       );
-      _fetchByDate(DateTime.now(), DateTime.now());
+      await fetchByDate(DateTime.now(), DateTime.now());
+      return;
     } else if (dates == Dates.ontem) {
       value = ResultsState(
         isLoading: true,
         currentFilterDateName: "Ontem",
         results: value.results,
       );
-      _fetchByDate(
+      await fetchByDate(
           DateTime.now().subtract(const Duration(days: 1)), DateTime.now());
+      return;
     } else if (dates == Dates.esteMes) {
       value = ResultsState(
         isLoading: true,
         currentFilterDateName: "Este mes",
         results: value.results,
       );
-      _fetchByDate(
+      await fetchByDate(
           DateTime.now().subtract(const Duration(days: 30)), DateTime.now());
+      return;
     } else if (dates == Dates.esteAno) {
       value = ResultsState(
         isLoading: true,
         currentFilterDateName: "Este Ano",
         results: value.results,
       );
-      _fetchByDate(DateTime(DateTime.now().year), DateTime.now());
+      await fetchByDate(DateTime(DateTime.now().year), DateTime.now());
+      return;
     } else if (dates == Dates.custom) {
       start = start ?? DateTime.now();
       end = end ?? DateTime.now();
@@ -205,7 +219,8 @@ class ResultsModuleController extends ValueNotifier<ResultsState> {
             "${start.customToString()} - ${end.customToString()}",
         results: value.results,
       );
-      _fetchByDate(start, end);
+      await fetchByDate(start, end);
+      return;
     }
   }
 

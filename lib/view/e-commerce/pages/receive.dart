@@ -120,55 +120,55 @@ class ReceiptPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Stack(
                     children: [
-                      Column(
-                        children: [
-                          Row(
-                            children: [
-                              InkWell(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: const Icon(Icons.arrow_back)),
-                              const SizedBox(
-                                width: 25,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Recibo",
-                                    style: TextStyle(
-                                      color: Color(0xff292929),
-                                      fontSize: 16,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  Text(
-                                    "${state.receipt.attributes.stories.length}"
-                                        " Lojas selecionadas",
-                                    style: const TextStyle(
-                                      color: Color(0xff9a9a9a),
-                                      fontSize: 11,
-                                      fontFamily: "Montserrat",
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Spacer(),
-                              PopupMenuButton(
-                                icon: const Icon(
-                                  Icons.menu,
-                                  color: Colors.black54,
+                      SingleChildScrollView(
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: const Icon(Icons.arrow_back)),
+                                const SizedBox(
+                                  width: 25,
                                 ),
-                                itemBuilder: (ctx) => [],
-                              )
-                            ],
-                          ),
-                          SingleChildScrollView(
-                            child: Column(
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      "Recibo",
+                                      style: TextStyle(
+                                        color: Color(0xff292929),
+                                        fontSize: 16,
+                                        fontFamily: "Montserrat",
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      "${state.receipt.attributes.stories.length}"
+                                          " Lojas selecionadas",
+                                      style: const TextStyle(
+                                        color: Color(0xff9a9a9a),
+                                        fontSize: 11,
+                                        fontFamily: "Montserrat",
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Spacer(),
+                                PopupMenuButton(
+                                  icon: const Icon(
+                                    Icons.menu,
+                                    color: Colors.black54,
+                                  ),
+                                  itemBuilder: (ctx) => [],
+                                )
+                              ],
+                            ),
+                            Column(
                               children: [
                                 const SizedBox(
                                   height: 16,
@@ -187,11 +187,13 @@ class ReceiptPage extends StatelessWidget {
 
                                       )
                                   )),
-                                ))
+                                  
+                                )),
                               ],
                             ),
-                          )
-                        ],
+                            SizedBox(height: 120,)
+                          ],
+                        ),
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,

@@ -8,6 +8,6 @@ class ResultsState{}
 class ResultsLoading extends ResultsState{}
 
 class ResultsLoaded extends ResultsState{
-  final Results results;
+  final UserResults results;
   ResultsLoaded({required this.results});
 }

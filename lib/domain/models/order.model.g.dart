@@ -15,7 +15,9 @@ Receipt _$ReceiptFromJson(Map<String, dynamic> json) => Receipt(
       user_id: json['user_id'] as int,
       category_id: json['category_id'] as int?,
       totalPrice: (json['totalPrice'] as num?)?.toDouble() ?? 0,
-    );
+    )
+      ..dt_criacao = json['dt_criacao'] as int?
+      ..dt_autalizacao = json['dt_autalizacao'] as int?;
 
 Map<String, dynamic> _$ReceiptToJson(Receipt instance) => <String, dynamic>{
       'id': instance.id,
@@ -25,6 +27,8 @@ Map<String, dynamic> _$ReceiptToJson(Receipt instance) => <String, dynamic>{
       'observation': instance.observation,
       'attributes': instance.attributes,
       'totalPrice': instance.totalPrice,
+      'dt_criacao': instance.dt_criacao,
+      'dt_autalizacao': instance.dt_autalizacao,
     };
 
 ReceiptAttributes _$ReceiptAttributesFromJson(Map<String, dynamic> json) =>

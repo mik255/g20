@@ -7,6 +7,19 @@ extension DateTimeExtension on DateTime {
     DateFormat dateFormatterPtBr = DateFormat('dd/MM/yyyy');
     return dateFormatterPtBr.format(this);
   }
+
+  String customYearToString() {
+    DateFormat dateFormatterPtBr = DateFormat('yyyy-MM-dd');
+    return dateFormatterPtBr.format(this);
+  }
+
+  String toStringWithHour() {
+    DateFormat dateFormatterPtBr = DateFormat('yyyy/MM/dd hh:mm');
+    return dateFormatterPtBr.format(this);
+  }
+
+  String customToStringWithHour() {
+    DateFormat dateFormatterPtBr = DateFormat('dd/MM/yyyy HH:mm:ss',);
+    return dateFormatterPtBr.format(this);
+  }
 }
-
-

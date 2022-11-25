@@ -27,21 +27,23 @@ class ReceiptCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.store,
                         color: Color(0xff545454),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
-                      Text(storyViewController.value.story.name,
-                          style: const TextStyle(
-                            color: Color(0xff545454),
-                            fontSize: 20,
-                            fontFamily: "Montserrat",
-                            fontWeight: FontWeight.w500,
-                          )),
-                      Spacer(),
+                      Expanded(
+                        child: Text (storyViewController.value.story.name,
+                            style: const TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              color: Color(0xff545454),
+                              fontSize: 20,
+                              fontFamily: "Montserrat",
+                              fontWeight: FontWeight.w500,
+                            )),
+                      ),
                       PopupMenuButton(
                         icon: Icon(Icons.cached,color: Colors.blue,),
                         itemBuilder: (ctx) => [

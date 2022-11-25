@@ -90,7 +90,7 @@ class ChartResultsPage extends StatelessWidget {
                                                 backgroundColor:
                                                     Colors.red[200]!,
                                                 percent: state
-                                                    .results!.marginProfit!,
+                                                    .results!.marginProfit/100,
                                                 center: Column(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.center,
@@ -106,7 +106,7 @@ class ChartResultsPage extends StatelessWidget {
                                                     ),
                                                     Text(
                                                       formatMoney(state
-                                                          .results!.g20total!),
+                                                          .results!.g20total),
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w600,
@@ -175,11 +175,11 @@ class ChartResultsPage extends StatelessWidget {
                                         children: [
                                           _customContainer(
                                               'Com G20',
-                                              state.results!.g20Price!,
+                                              state.results!.g20Price,
                                               Colors.blue[200]!),
                                           _customContainer(
                                               'Preço da praça',
-                                              state.results!.priceSquare!,
+                                              state.results!.priceSquare,
                                               Colors.red[200]!),
                                         ],
                                       ),
@@ -192,14 +192,14 @@ class ChartResultsPage extends StatelessWidget {
                                             _customContainer2(
                                               'Total de Vendas',
                                               Colors.white,
-                                              text: '50.00',
+                                              text:  state.results!.totalOrders.toString(),
                                               value: 50,
                                             ),
                                             _customContainer2(
                                               'Ticket Médio',
                                               Colors.white,
                                               value: 50.00,
-                                              text: '50.00',
+                                              text:  state.results!.ticket.toString(),
                                             ),
                                           ],
                                         ),

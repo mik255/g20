@@ -17,7 +17,7 @@ class _ResultProviderState extends State<ResultProvider> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ListenableProvider(create: (_)=> ResultsModuleController(context)..fetchResults())
+        ListenableProvider(create: (_)=> ResultsModuleController(context)..fetchByDate(DateTime.now(),DateTime.now()))
       ],
       child: ChartResultsPage(),
     );

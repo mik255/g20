@@ -16,6 +16,8 @@ class Receipt {
   String? observation;
   ReceiptAttributes attributes;
   double? totalPrice;
+  int? dt_criacao;
+  int? dt_autalizacao;
   Receipt({
     this.id,
     required this.date,
