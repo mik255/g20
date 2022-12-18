@@ -29,7 +29,8 @@ class BagController extends ValueNotifier<BagState> {
             nameButton: 'Caixa',
             onPressed: value.onPressed,
             enable: verifyIfEnable(),
-            currentProduct: value.currentProduct
+            currentProduct: value.currentProduct,
+            canRemoveProduct: true,
         );
         break;
       case BagTypee.casherBag:
@@ -39,7 +40,8 @@ class BagController extends ValueNotifier<BagState> {
             nameButton: 'Pagamento',
             onPressed: value.onPressed,
             enable: verifyIfEnable(),
-            currentProduct: value.currentProduct
+            currentProduct: value.currentProduct,
+            canRemoveProduct: true
         );
         break;
       case BagTypee.paymentBag:
@@ -49,7 +51,8 @@ class BagController extends ValueNotifier<BagState> {
             nameButton: 'Recibo',
             onPressed: value.onPressed,
             enable: verifyIfEnable(),
-            currentProduct: value.currentProduct
+            currentProduct: value.currentProduct,
+            canRemoveProduct: false
         );
         break;
         case BagTypee.receiveBag:
@@ -59,7 +62,8 @@ class BagController extends ValueNotifier<BagState> {
             nameButton: 'Salvar',
             onPressed: value.onPressed,
             enable: verifyIfEnable(),
-            currentProduct: value.currentProduct
+            currentProduct: value.currentProduct,
+            canRemoveProduct: false
         );
         break;
     }

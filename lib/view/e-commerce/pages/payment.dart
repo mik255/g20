@@ -22,7 +22,9 @@ class _PaymentPageState extends State<PaymentPage> {
   @override
   Widget build(BuildContext context) {
     ModuleController appController = context.read<ModuleController>();
-    context.read<ModuleController>().categoryViewController.bagType = BagTypee.paymentBag;
+    appController.categoryViewController
+        .buildListOfStoriesWithProductsSelected();
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Payment"),

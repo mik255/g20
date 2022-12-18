@@ -10,15 +10,16 @@ import '../product/store/productController.dart';
 
 class CategoryViewController extends ValueNotifier<CategoryState> {
   CategoryViewController(super.value) {
-    bagType = BagTypee.homeBag;
+    bagType = BagTypee.casherBag;
     bagController = BagController(
       BagState(
         bagType: bagType,
         leftValue: 0,
-        nameButton: 'Caixa',
+        nameButton: 'Pagamento',
         enable: false,
         onPressed: () {},
-        currentProduct: null
+        currentProduct: null,
+          canRemoveProduct: true
       ),
     );
 

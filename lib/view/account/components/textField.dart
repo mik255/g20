@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
 class TextFieldComponent extends StatelessWidget {
-  const TextFieldComponent({Key? key, required this.label}) : super(key: key);
+  TextFieldComponent({Key? key, required this.label,this.onChange}) : super(key: key);
   final String label;
-
+  Function(String value)? onChange;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onChange,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         fillColor: Colors.white,

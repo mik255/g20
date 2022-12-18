@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:g20/view/e-commerce/components/category/categoryState.dart';
+import 'package:g20/view/e-commerce/pages/payment.dart';
 import 'package:provider/provider.dart';
 import '../components/bag/bagComponent.dart';
 import '../components/bag/bagState.dart';
@@ -184,10 +185,10 @@ class _HomePageState extends State<HomePage> {
                           .read<ModuleController>()
                           .categoryViewController
                           .bagController
-                          .setBagType(BagTypee.casherBag);
+                          .setBagType(BagTypee.paymentBag);
                       context
                           .read<ModuleController>()
-                          .navigator(const Checkout());
+                          .navigator(const PaymentPage());
                     },
                   ),
                 ),

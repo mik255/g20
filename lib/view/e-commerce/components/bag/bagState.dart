@@ -14,8 +14,8 @@ class BagState {
     this.enable = false,
     required this.onPressed,
     required this.bagType,
-    required this.currentProduct
-
+    required this.currentProduct,
+    this.canRemoveProduct = true
   });
   BagTypee bagType;
   double leftValue;
@@ -24,5 +24,6 @@ class BagState {
   bool enable;
   Function onPressed;
   ProductViewController? currentProduct;
+  bool canRemoveProduct;
 }
 

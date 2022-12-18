@@ -33,6 +33,7 @@ class ModuleController extends ValueNotifier<EcommerceState>{
   String observation = '';
   late CategoryViewController categoryViewController;
  late ReceiptController receiptController;
+
   void fetchCategories() async {
     value = EcommerceStateLoading();
     try {

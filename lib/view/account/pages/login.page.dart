@@ -15,7 +15,8 @@ class LoginPage extends StatelessWidget {
       text: 'Submit',
     ),
   );
-
+  String cnpj = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
 
@@ -39,17 +40,19 @@ class LoginPage extends StatelessWidget {
             Spacer(flex: 3),
             TextFieldComponent(
               label: 'CNPJ',
+              onChange: (v)=> cnpj = v,
             ),
             SizedBox(height: 16),
             TextFieldComponent(
               label: 'Senha',
+              onChange: (v)=> password = v,
             ),
             Spacer(),
             Button(
               controller: controller,
               onTap: () async {
                 controller.awaitState();
-                String result = await context.read<LoginController>().login('123', '123');
+                String result = await context.read<LoginController>().login(cnpj, password);
                 if(result == 'ok'){
                   Navigator.pushReplacementNamed(context, '/ecommerceProvider');
                 }else{

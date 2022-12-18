@@ -83,6 +83,7 @@ class BagComponent extends StatelessWidget {
                       const Spacer(),
                       if ( state.currentProduct != null &&
                           state.currentProduct!.value.product.count>0)
+                       if(state.canRemoveProduct)
                         InkWell(
                           onTap: () {
                             state.currentProduct?.decrement();
@@ -94,7 +95,7 @@ class BagComponent extends StatelessWidget {
                               backgroundColor: Colors.white30,
                               radius: 50,
                               child: Icon(
-                                Icons.close,
+                                Icons.exposure_minus_1,
                                 color: Colors.white,
                                 size: 30,
                               ),
